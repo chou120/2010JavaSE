@@ -47,7 +47,43 @@ public class MyArray2 {
       System.out.print(str[i]+"\t");
     }
 
-
+    /**
+     * 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+     *
+     *             对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+     *
+     *             针对所有的元素重复以上的步骤，除了最后一个，即需要进行length-1次。
+     *
+     *             第一次是对n个数进行n-1次比较，进行到最后第n个的一个是最大的；
+     *
+     *             第二次是对n-1个数进行n-2次比较，进行到最后第n-1个的一个是最大的；
+     *
+     *             ......
+     *
+     *             持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+     *
+     *              //冒泡排序算法
+     *         int[] numbers=new int[]{1,5,8,2,3,9,4};
+     *         //需进行length-1次冒泡
+     *         for(int i=0;i<numbers.length-1;i++)
+     *         {
+     *             for(int j=0;j<numbers.length-1-i;j++)
+     *             {
+     *                 if(numbers[j]>numbers[j+1])
+     *                 {
+     *                     int temp=numbers[j];
+     *                     numbers[j]=numbers[j+1];
+     *                     numbers[j+1]=temp;
+     *                 }
+     *             }
+     *         }
+     *         System.out.println("从小到大排序后的结果是:");
+     *         for(i=0;i<numbers.length;i++)
+     *             System.out.print(numbers[i]+" ");
+     *     }
+     *
+     *
+     */
 
   }
 
