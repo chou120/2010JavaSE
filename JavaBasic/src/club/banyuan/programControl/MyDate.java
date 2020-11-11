@@ -10,11 +10,13 @@ import java.util.Scanner;
 public class MyDate {
 
   /**
-   * 课堂练习 1.使用switch 该写 四季练习
+   * 课堂练习 1.使用switch 改写 四季练习
    * <p>
    * 2.判断输入month月 date 号 是今年的第多少天 2020 month是手动输入的月份 date 是手动输入的天数
    * <p>
    * 3.改写第二题,判断输入的年份year是否是闰年,并且得到是year年的第多少天 year 是手动输入的年份
+   *    （4&&100）  ||   400
+   *
    */
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
