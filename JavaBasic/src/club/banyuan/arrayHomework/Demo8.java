@@ -17,7 +17,6 @@ public class Demo8 {
 
     System.out.println(formateByte(1532300001));
 
-
   }
 
   public static String formateByte(long bytes) {
@@ -41,8 +40,6 @@ public class Demo8 {
     }
 
     return str;
-
-
   }
 
 }

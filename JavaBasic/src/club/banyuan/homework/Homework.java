@@ -30,13 +30,10 @@ public class Homework {
 
 
   public static void main(String[] args) {
-
-    System.out.println(formateByte(1532300001));
-
-    //printGradeTable();
-    System.out.println(Arrays.toString(filterArray(new int[] {1, 3, 3, 1, -3, -9, 12, 33})));
+    //System.out.println(formateByte(1532300001));
+    printGradeTable();
+    //System.out.println(Arrays.toString(filterArray(new int[] {1, 3, 3, 1, -3, -9, 12, 33})));
   }
-
   static void printGradeTable() {
     double grade = 1.0;
     for (int i = 0; i < 12; i++) {
@@ -52,11 +49,8 @@ public class Homework {
         System.out
             .printf("%.1f\t" + (60 + (i - 2) * 5) + " - " + (60 + (i - 2) * 5 + 4.5) + "\n", grade);
       }
-
     }
   }
-
-
   static double getGrade(double point) {
     if (point <= 49.5) {
       return 1.0;
@@ -66,9 +60,7 @@ public class Homework {
     if (point >= 105) {
       return 5.0;
     }
-
     int step = (int) ((point - 60) / 5);
-
     switch (step) {
       case 0:
         return 1.7;
