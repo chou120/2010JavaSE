@@ -22,7 +22,7 @@ public class Demo3 {
         if(j==v){  // 0   j是用来存放次数的数组的下标跟随机数相比进行判断
           //ints[j]=++ints[j];  //数组下标所指向的数据本身自加1
           ++ints[j];
-          // break;
+          //break;
         }
       }
     }
