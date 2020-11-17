@@ -20,13 +20,36 @@ public class Hammer {
       锤子的行为:
         qiao();
    */
-  String material = "钛合金";  //
-  String form = "长条";
-  double weigth = 1.2; //kg
-  double length = 30.8; //厘米
+  private String material = "钛合金";  //
+  private String form = "长条";
+  private double weigth = 1.2; //kg
+  private double length = 30.8; //厘米
   private  double price = 1.35; // 价格  将模板的属性隐藏  防止别的工具直接调用修改数据  可能会导致数据安全问题
-  String name = "壁咚锤";  //全局变量
+  private String name = "壁咚锤";  //全局变量
 
+
+  public void setMaterial(String newMaterial) {
+    if(newMaterial.length()>0 && newMaterial.length()<20){
+      material = newMaterial;
+    }else{
+      System.err.println("长度超出");
+    }
+  }
+  public void setForm(String newForm) {
+    if(newForm.length()>0 && newForm.length()<20){
+      form = newForm;
+    }else{
+      System.err.println("长度超出");
+    }
+  }
+
+  public void setName(String newName) {
+    if(newName.length()>0 && newName.length()<20){
+      name = newName;
+    }else{
+      System.err.println("长度超出");
+    }
+  }
 
   public   void  setPrice(double  newPrice){
     if(newPrice<0 || newPrice > 1000000){
@@ -74,6 +97,10 @@ public class Hammer {
 class Test {
 
   public static void main(String[] args) {
+
+    //System.out.println(3/0);  //一般对数据处理      考虑分母  不能为0   by  zero    java.lang.ArithmeticException: / by zero
+
+
     /**
      * 创建对象的格式:
      *  类名  变量名(对象名)=new  类名();
@@ -103,19 +130,19 @@ class Test {
 
     //从现在开始  生产出来的锤子的属性值都要发生变化
     Hammer newHammer = new Hammer();
-    newHammer.name = "铁榔头";
-    newHammer.form = "圆形";
-    newHammer.length = 400;
-    newHammer.material = "陨石";
-    //newHammer.price = 0.5;
-    newHammer.weigth = 2.5;
+//    newHammer.name = "铁榔头";
+//    newHammer.form = "圆形";
+//    newHammer.length = 400;
+//    newHammer.material = "陨石";
+//    //newHammer.price = 0.5;
+//    newHammer.weigth = 2.5;
+//
+//    System.out.println(newHammer.hashCode());  //747464370
+//
+//    Hammer hammer=newHammer;  //
+//    hammer.name="张三";
 
-    System.out.println(newHammer.hashCode());  //747464370
-
-    Hammer hammer=newHammer;  //
-    hammer.name="张三";
-
-    System.out.println(hammer.hashCode());  //747464370
+    //System.out.println(hammer.hashCode());  //747464370
 
     System.out.println(newHammer.getInfo());
 //     String s = showInformation(newHammer);
