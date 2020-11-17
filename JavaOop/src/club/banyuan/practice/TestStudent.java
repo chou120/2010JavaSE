@@ -19,7 +19,6 @@ public class TestStudent {
     subject.setSubjectName("是兄弟就来砍我");
     subject.setSubScore(999);
 
-
     Subject[] subjects = new Subject[3];
     subjects[0]=subject;
 
@@ -36,12 +35,16 @@ public class TestStudent {
     subject2.setSubScore(49);
     subjects[2]=subject2;
 
+
+    //循环输入
+
+
+
     //将科目的数组直接赋值给学生  那就意味着学生有了多个科目的值
-    student.setSubject(subjects);
+    student.setSubject(subjects);  //
+   //student.setSubject(new Subject[]{new Subject(),new Subject(),new Subject()});
 
     System.out.println("学生的具体信息有:"+student);
 
   }
-
-
 }

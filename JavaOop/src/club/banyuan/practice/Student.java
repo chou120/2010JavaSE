@@ -8,6 +8,16 @@ import java.util.Arrays;
  * @date 2020/11/17 11:11 上午
  */
 public class Student {
+  /**
+   * 一对多   一个 A  对应多个 B
+   *          一个老师多个学生   一个公司 多个员工    一个饭店多个厨师    一个人 多套衣服
+   *          ...
+   *          双十一    买了三四件的商品     一个用户 多个商品
+   * 多对一
+   *
+   * 多对多
+   *
+   */
 
   private String stuNumber;
   private String stuName;
@@ -71,6 +81,16 @@ public class Student {
   public void setClassRoom(String classRoom) {
     this.classRoom = classRoom;
   }
+
+
+  //学生有主动添加科目的方法
+  public   void  addSubject(Subject subject){
+
+
+  }
+
+
+
 
 
 }

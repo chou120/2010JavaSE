@@ -112,6 +112,7 @@ public class Student {
    * 在输出语句中直接输出一个对象名,其实就输出该对象的所有的属性信息
    * @return
    */
+
   public String toString() {
     System.err.println("我哟没哟被调用");
     return "学生信息如下:{" +
