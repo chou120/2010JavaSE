@@ -9,6 +9,24 @@ import java.util.Arrays;
  */
 public class Company {
 
+  //用来记数添加的部门的个数
+  private  int  deptNumber=0;
+  //用来记数添加员工的个数
+  private  int  empNumber=0;
+
+  public int getDeptNumber() {
+    return deptNumber;
+  }
+  public void setDeptNumber(int deptNumber) {
+    this.deptNumber = deptNumber;
+  }
+  public int getEmpNumber() {
+    return empNumber;
+  }
+  public void setEmpNumber(int empNumber) {
+    this.empNumber = empNumber;
+  }
+
   private String companyId; // 公司名字
   private String address;
   private String date;//时间

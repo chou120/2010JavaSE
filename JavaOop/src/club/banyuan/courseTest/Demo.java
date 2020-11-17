@@ -40,13 +40,19 @@ public class Demo {
     department.setDeptId("123");
     department.setAddress("南京");
     department.setDeptName("人事部");
-    Employee[] employees = new Employee[3];
-    department.setEmployee(employees);
-
+    //Employee[] employees = new Employee[1];
+    //department.setEmployee(employees);
     updateCompanyData.addDepartment(department, company);
 
-    System.out.println(company);
 
+    department = new Department();
+    department.setDeptId("124");
+    department.setAddress("南京");
+    department.setDeptName("研发部");
+    //employees = new Employee[1];
+   // department.setEmployee(employees);
+
+    updateCompanyData.addDepartment(department, company);
 
     //现在是把员工添加进去
     Employee employee1 = new Employee();
@@ -55,6 +61,23 @@ public class Demo {
     employee1.setJob("人事");
 
     updateCompanyData.addEmployee(employee1,"人事", company);
+
+    employee1 = new Employee();
+    employee1.setName("天行健");
+    employee1.setEmpId("005");
+    employee1.setJob("研发");
+
+    updateCompanyData.addEmployee(employee1,"研发", company);
+
+
+    employee1 = new Employee();
+    employee1.setName("大保健");
+    employee1.setEmpId("006");
+    employee1.setJob("研发");
+
+    updateCompanyData.addEmployee(employee1,"研发", company);
+
+
 
     System.out.println(company);
 

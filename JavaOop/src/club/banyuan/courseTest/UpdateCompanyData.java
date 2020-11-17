@@ -1,5 +1,7 @@
 package club.banyuan.courseTest;
 
+import java.util.Arrays;
+
 /**
  * @author sanye
  * @version 1.0
@@ -24,24 +26,47 @@ public class UpdateCompanyData {
 
   //添加一个部门
   public  void  addDepartment(Department department,Company  company){
+
+    int deptNumber = company.getDeptNumber();
+
     //添加到部门数组中,部门数组在company对象
      Department[] department1 = company.getDepartment();
-     department1[0]=department;
+
+     department1[deptNumber++]=department;
+     company.setDeptNumber(deptNumber);
   }
 
   //对员工和部门的增删改查的方法
   public   void  addEmployee(Employee employee,String  name,Company company){
-    if(company.getDepartment()==null){
-      return ;
+
+    Department[] department = company.getDepartment();
+    Employee [] employees=null;
+
+    for (int i = 0; i < company.getDeptNumber(); i++) {
+      if(department[i].getEmployee()==null){
+          if(department[i].getDeptName().equals("人事部")){
+              //创建人事部的员工数组
+              employees=new Employee[1];
+              employees[0]=employee;
+            department[i].setEmployee(employees);
+          }else if(department[i].getDeptName().equals("研发部")){
+            employees=new Employee[1];
+            employees[0]=employee;
+            department[i].setEmployee(employees);
+          }
+      }else {
+          //如果数组长度不为空,对原有的数组进行扩容
+        if(department[i].getDeptName().startsWith(name)){
+          Employee[] employee1 = department[i].getEmployee();
+          //使用此方式对原有的数组进行扩容
+          employee1=Arrays.copyOf(employee1,employee1.length+1);
+          employee1[employee1.length-1]=employee;
+          department[i].setEmployee(employee1);
+        }
+
+      }
     }
-    if(employee.getJob()==name){
-      Employee[] employee1 = company.getDepartment()[0].getEmployee();
-      employee1[0]=employee;
-      company.getDepartment()[0].setEmployee(employee1);
-    }else{
-      System.err.println("找不到组织");
-      return;
-    }
+
   }
 
   //判断数组是否为空
