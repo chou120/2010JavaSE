@@ -27,7 +27,6 @@ public class User {
   private String userAddress;
   private String iphone;
   //用户的银行账号
-  //
   private  Product[] products; // null
 
 
