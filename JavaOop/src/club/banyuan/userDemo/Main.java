@@ -46,21 +46,21 @@ public class Main {
               user.setProducts(products);
               //TODO 调用显示所有商品的详情
               productService.showAll();
-              while (true){
+              while (true) {
                 System.out.println("请选择商品操作项:");
                 String proNumber = scanner.next();
-                switch (proNumber){
+                switch (proNumber) {
                   case "1":
                     System.out.println("请选择需要操作的商品编号:");
                     String proID = scanner.next();
-                    productService.buy(proID,user);
+                    productService.buy(proID, user);
                     break;
                   case "2":
                     //TODO 移除商品
                     break;
                   case "3":
                     //TODO 查看所有商品
-                  userService.printnInfo(user);
+                    userService.printnInfo(user);
 
                     break;
                   case "4":
