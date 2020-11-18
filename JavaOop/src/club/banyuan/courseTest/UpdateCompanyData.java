@@ -9,7 +9,6 @@ import java.util.Arrays;
  */
 public class UpdateCompanyData {
 
-
   //初始化所有的数组
   public  void   init(Company company){
     //产品数组初始化
@@ -21,17 +20,13 @@ public class UpdateCompanyData {
     company.setDepartment(departments);
     company.setProduct(products);
     //塞员工数组了   由于员工数组在部门中 所以需要考虑初始化的 要不要创建员工数组
-
   }
 
   //添加一个部门
   public  void  addDepartment(Department department,Company  company){
-
     int deptNumber = company.getDeptNumber();
-
     //添加到部门数组中,部门数组在company对象
      Department[] department1 = company.getDepartment();
-
      department1[deptNumber++]=department;
      company.setDeptNumber(deptNumber);
   }
