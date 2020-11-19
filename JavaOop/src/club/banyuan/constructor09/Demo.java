@@ -13,7 +13,9 @@ public class Demo {
    *
    */
   public static void main(String[] args) {
-    //Person person = new Person();   //  new  Person(); 只不过没有变量名来接收这个Person对象  没有变量名来接收的叫匿名对象
+
+
+    //1.Person person = new Person();   //  new  Person(); 只不过没有变量名来接收这个Person对象  没有变量名来接收的叫匿名对象
     //Person  person=null;  // 没有引用具体的Person对象
 //    new Person();
 //    new Person();  //匿名对象调用一次 就会被当成垃圾   jvm 自动回收
@@ -25,6 +27,7 @@ public class Demo {
     /**
      *  对象根据什么创建的?   对象构造器      每个java文件都会有一个默认的构造器(隐藏起来)
      */
+//  5.
 
   }
 }

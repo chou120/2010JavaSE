@@ -9,6 +9,10 @@ import club.banyuan.staticDemo11.Worker;
  */
 public class Test {
 
+  // 例子：
+  private  static  int  age;
+
+
   public static void main(String[] args) {
 //    Worker.method2();
 //    new  Worker().method1();
@@ -17,23 +21,32 @@ public class Test {
     // System.out.println(Worker.country);
 
     //测试静态和非静态属性
-    Worker worker = new Worker();
-    worker.setName("阳刚");
-    worker.setCountry("小日本");
+//    Worker worker = new Worker();
+//    worker.setName("阳刚");
+//    worker.setCountry("小日本");
+//
+//    Worker worker2 = new Worker();
+//    worker2.setName("潘潘");
+//    worker2.setCountry("韩棒子");  //马来西亚  印度尼西亚  印度
+//
+//    Worker worker3 = new Worker();
+//    worker3.setName("王子仁");
+//    worker3.setCountry("印度");
+//
+//    System.out.println(worker);
+//    System.out.println(worker2);
+//    System.out.println(worker3);
 
-    Worker worker2 = new Worker();
-    worker2.setName("潘潘");
-    worker2.setCountry("韩棒子");  //马来西亚  印度尼西亚  印度
 
-    Worker worker3 = new Worker();
-    worker3.setName("王子仁");
-    worker3.setCountry("印度");
+    // 4.
+//        new  Worker();
+//        new  Worker();
+//        new  Worker();
 
-    System.out.println(worker);
-    System.out.println(worker2);
-    System.out.println(worker3);
+    //System.out.println(age);
 
-
+    //System.out.println("哈哈时候");
+    //Worker.method2();
 
   }
 }
