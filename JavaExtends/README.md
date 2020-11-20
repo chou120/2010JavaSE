@@ -70,7 +70,7 @@
    
   public class MainClass {
       public static void main(String[] args) {
-          C c = new C();
+          C c = new C();  //123
       }
   }
   ```
@@ -97,7 +97,7 @@
    
   public class MainClass {
       public static void main(String[] args) {
-          C c = new C();
+          C c = new C();   ABC
       }
   }
   ```
@@ -108,6 +108,7 @@
       public X(int i) {
           System.out.println(1);
       }
+        
   }
    
   class Y extends X {
@@ -121,9 +122,7 @@
   public class A {
       public A() {
           System.out.println(1);
-   
           super();
-   
           System.out.println(2);
       }
   }
@@ -132,7 +131,7 @@
   ```
   public class A {
       public A(int i) {
-   
+        
       }
   }
    
@@ -145,7 +144,6 @@
   public class A {
       public A() {
           super();
-   
           this(10);
       }
    
@@ -159,7 +157,7 @@
   
   ```
   class M {
-      int i;
+      int i; //27
    
       public M(int i) {
           this.i = i--;
@@ -205,7 +203,6 @@
   public class MainClass {
       public static void main(String[] args) {
           N n = new N(26);
-   
           System.out.println(n.i);
       }
   }
@@ -226,10 +223,9 @@
   ```
   class X {
       int m = 1111;
-   
       {
-          m = m++;
-          System.out.println(m);
+          m = m++;    
+          System.out.println(m); // 1111 
       }
   }
    
@@ -239,7 +235,7 @@
       }
    
       int methodOfY()    {
-          return m-- + --m;
+          return m-- + --m; // 1111 + 1109    2220
       }
   }
    
@@ -280,70 +276,60 @@
   }
   
   class B extends A {
-  	A a;
-  
+  	A a;  //成员变量a 有对象 
   	public B(A a) {
   		this.a = a;
   	}
+    public  void  method(){
+        sout  i;          //1212
+    }
   }
   
   public class MainClass {
   	public static void main(String[] args) {
   		A a = new A();
-  
+ 
   		B b = new B(a);
+
+  		System.out.println(a.i);  //1212
   
-  		System.out.println(a.i);
+  		System.out.println(b.i); // 1212
   
-  		System.out.println(b.i);
-  
-  		System.out.println(b.a.i);
+  		System.out.println(b.a.i); // 1212
   
   		b.a.i = 2121;
-  
+      //  b.method();  
+
   		System.out.println("--------");
-  
-  		System.out.println(a.i);
-  
-  		System.out.println(b.i);
+  		System.out.println(a.i);  //2121  
+  		System.out.println(b.i);  // 1212
   	}
   }
   ```
   
-  #### 13. 
+  #### 13.  待讲
   
   ```
-  class A
-  {
-  	int methodOfA(int i)
-  	{
+  class A{
+  	int methodOfA(int i){
   		i /= 10;
-  
   		return i;
   	}
   }
-  
-  class B extends A
-  {
-  	int methodOfB(int i)
-  	{
-  		i *= 20;
-  		
+  class B extends A{
+  	int methodOfB(int i){
+  		i *= 20;	
   		return methodOfA(i);
   	}
   }
-  
-  public class MainClass
-  {
-  	public static void main(String[] args)
-  	{
+  public class MainClass{
+  	public static void main(String[] args){
   		B b = new B();
-  
   		System.out.println(b.methodOfB(100));
   	}
   }
   ```
-  
+ 
   #### 14. 
   ```
   class One
@@ -568,11 +554,9 @@
       static {
           System.out.println('D');
       }
-   
       {
           System.out.println('E');
       }
-   
       public N() {
           System.out.println('F');
       }
@@ -793,7 +777,7 @@
     int j = 222;
   
     {
-      i = i++ - ++j;
+      i = i++ - ++j;  // 111 - 223  -112  -113 +  222  
     }
   }
   
@@ -814,4 +798,12 @@
     }
   }
   ```
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
