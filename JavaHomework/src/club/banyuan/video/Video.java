@@ -4,10 +4,9 @@ public class Video {
 //- 片名
 // - 是否被出租的标识
 // - 用户的平均评分
-
   private String name;  //电影用户名
   private boolean isRent;  //是否被借出
-  private int mark;//用户的平均评分
+  private int mark;//用户的平均评分     // 每个人的评分+   /本电影被评次数
   private int markTimes; //用户评分次数
 
   public String getName() {
@@ -49,10 +48,11 @@ public class Video {
     this.markTimes = markTimes;
   }
 
-  //计算平均分的方法
+  //计算评分的方法
   public void setMark(int mark) {
-    //            平均分*评分次数 + 新用户评分
+    //平均分*评分次数 + 新用户评分  第一个人评分的时候    5    5     平均分*次数=总分  + 新分数    /新的次数  =新的平均分
+    // 第二个人    4
     this.mark = (this.mark * markTimes + mark) / (markTimes + 1);
-    markTimes++;
+    markTimes++;  //
   }
 }

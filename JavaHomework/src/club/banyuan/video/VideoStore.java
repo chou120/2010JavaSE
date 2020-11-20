@@ -46,7 +46,6 @@ public class VideoStore {
     }
     return false;
   }
-
   /**
    * 根据 电影名称查询电影
    *
@@ -65,6 +64,7 @@ public class VideoStore {
 
   /**
    * 设置用户对电影的评分(1~5)，收到评分之后，计算该电影的平均评分，
+   * videoName  电影名字  mark分数
    */
   public void receiveRating(String videoName, int mark) {
     Video videoByName = findVideoByName(videoName);
