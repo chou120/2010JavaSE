@@ -12,6 +12,9 @@ public class TestGane {
     SpearWeapon spearWeapon = new SpearWeapon();
     HalberdWeapon halberdWeapon = new HalberdWeapon();
 
+    Tool.getWeapon(spearWeapon);
+    Tool.getWeapon(halberdWeapon);
+
     Fighter fighter1 = new Fighter("张飞", spearWeapon);
     Fighter fighter2 = new Fighter("吕布", halberdWeapon);
 

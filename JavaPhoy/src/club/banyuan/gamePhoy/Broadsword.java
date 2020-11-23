@@ -7,4 +7,13 @@ package club.banyuan.gamePhoy;
  */
 public class Broadsword  extends Weapon {
 
+  @Override
+  public void attack(Fighter fighter1, Fighter fighter2) {
+
+  }
+
+  @Override
+  public void reset(String caizhi) {
+
+  }
 }

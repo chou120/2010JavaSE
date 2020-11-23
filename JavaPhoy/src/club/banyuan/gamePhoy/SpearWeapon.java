@@ -22,6 +22,15 @@ public class SpearWeapon extends Weapon {
 
     System.out
         .println(fighter1.getName() + "向" + fighter2.getName() + "发起了攻击,造成的伤害为:" + total + ","
-            + fighter2.getName() + "还剩下的血量为:" + fighter2.getHp());
+            + fighter2.getName() + "还剩下的血量为:" + fighter2.getHp()+fighter1.getName()+"的武器的材质为:"+fighter1.getWeapon().getTeture());
   }
+
+
+  @Override
+  public void reset(String caizhi) {
+    caizhi=caizhi+"钻石镶边";
+    this.setTeture(caizhi);
+  }
+
+
 }
