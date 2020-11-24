@@ -9,6 +9,10 @@ public class ReadyMadeCake extends  Cake{
 
   private  double quantity;
 
+  public double getQuantity() {
+    return quantity;
+  }
+
   public ReadyMadeCake(int n, double r, double quantity) {
     super(n, r);
     this.quantity = quantity;
