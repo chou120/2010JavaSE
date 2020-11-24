@@ -332,24 +332,17 @@
  
   #### 14. 
   ```
-  class One
-  {
+  class One{
   	int x = 2121;
   }
-  
-  class Two extends One
-  {
+  class Two extends One{
   	int x = 1212;
-  	
-  	{
+    {
   		System.out.println(x);
   	}
   }
-  
-  public class MainClass
-  {
-  	public static void main(String[] args)
-  	{
+  public class MainClass{
+  	public static void main(String[] args){
   		Two two = new Two();
   	}
   }
@@ -437,20 +430,16 @@
   #### 18.
   ```
   final class Complex {
-   
       private final double re;
       private final double im;
-   
       public Complex(double re, double im) {
           this.re = re;
           this.im = im;
       }
-   
       public String toString() {
           return "(" + re + " + " + im + "i)";
       }
   }
-   
   class Main {
     public static void main(String[] args) {
          Complex c = new Complex(10, 15);
@@ -585,7 +574,7 @@
   
   class B extends A {
   	static {
-  		s = s + "BBBAAA";
+  		s = s + "BBBAAA";  //AAABBBBBBAAA
   	}
   
   	{
@@ -607,7 +596,7 @@
   	int i = 101010;
   
   	public X() {
-  		i = i++ + i-- - i;
+  		i = i++ + i-- - i;  //101011
   	}
   
   	static int staticMethod(int i) {
@@ -746,8 +735,7 @@
   ```
   class X
   {
-  	static
-  	{
+  	static{
   		Y.methodOfY();
   	}
   }
@@ -775,9 +763,8 @@
     static int i = 111;
   
     int j = 222;
-  
     {
-      i = i++ - ++j;  // 111 - 223  -112  -113 +  222  
+      i = i++ - ++j;  // 111 - 223 = -112      -113 +  222  
     }
   }
   

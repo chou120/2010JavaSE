@@ -1,74 +1,46 @@
 面试题：
 1:看程序写结果（先判断有没有问题，如果没有，写出结果）
-class Fu
-{
-	public void show()
-	{
+class Fu{
+	public void show(){
 		System.out.println("fu show");
 	}
 }
-
-class Zi extends Fu
-{
-	public void show()
-	{
+class Zi extends Fu{
+	public void show(){
 		System.out.println("zi show");
 	}
-
-	public void method()
-	{
+	public void method(){
 		System.out.println("zi method");
 	}
 }
-class Test
-{
-	public static void main(String[] args)
-	{
+class Test{
+	public static void main(String[] args){
 		Fu f = new Zi();
 		f.method();
 	}
 }
 
 2:看程序写结果（先判断有没有问题，如果没有，写出结果）
-class A
-{
-	public void show()
-	{
-		show2();
-	}
-	
-	public void show2()
-	{
+class A{
+	public void show(){
+		show2();} //2 
+	public void show2(){
 		System.out.println("我");
-	}
-}
-class B extends A 
-{
-	public void show2()
-	{
+	}}
+class B extends A {
+	public void show2(）{
 		System.out.println("爱");
-	}
-}
-class C extends B 
-{
-	public void show()
-	{
-		super.show();
-	}
-	
-	public void show2()
-	{
+	}}
+class C extends B {
+	public void show(){
+		super.show();} //1  
+	public void show2(){
 		System.out.println("你");
-	}
-}
- 
-public class Test 
-{
-	public static void main(String[] args) 
-	{
+	}}
+public class Test {
+	public static void main(String[] args) {
 		A a = new B();
 		a.show();
- 
 		B b = new C();
 		b.show();
 	}
