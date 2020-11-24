@@ -8,6 +8,7 @@ package club.banyuan.abstractDemo;
 public class Test {
 
   public static void main(String[] args) {
+
     Weapon weapon = new IceAxe("萨达as吗");  // 抽象类多态
    // weapon.getInfo();
     System.out.println(weapon.getName());
