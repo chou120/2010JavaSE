@@ -69,21 +69,21 @@ public class LinkedList {
    * @return 将删除的元素返回，如果下标不合理，返回null
    */
   public Object remove(int index) {
+    if (head.getNext() == null) {
+      System.out.println("链表为空...");
+      return null;
+    }
     if (index < 0 || index >= size()) {
       System.out.println("下标不合法");
       return null;
     }
-    Node next = head.getNext();
-    //找到要移除的节点对象的前面一个对象 next
-    for (int i = 0; i < index - 1; i++) {
-      next = next.getNext();
-    }
-    //获取要移除节点的后面一个节点
-    Node next1 = next.getNext().getNext();
-    Node no = next.getNext();
-    next.setNext(next1);
+    Node next = findRemovePrevNode(index - 1);
+    System.out.println("上一个节点的值:"+next.getValue());
+    Node next1 = next.getNext().getNext(); //获取的是要删除节点后面的 一个节点
+    Node next2 = next.getNext(); //这是当前要移除的节点
+    next.setNext(next1); //将上一个节点next和下一个节点next1连接
     count--;
-    return no.getValue();
+    return next2.getValue();
   }
 
   /**
@@ -124,8 +124,8 @@ public class LinkedList {
    * @param index
    */
   private Node findRemovePrevNode(int index) {
-    Node next = head.getNext();
-    for (int i = 0; i < index; i++) {
+    Node next = head;
+    for (int i = 0; i <= index; i++) {
       next = next.getNext();
     }
     return next;

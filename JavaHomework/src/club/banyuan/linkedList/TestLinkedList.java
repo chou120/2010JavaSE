@@ -15,11 +15,11 @@ public class TestLinkedList {
     linkedList.add("123");
     linkedList.add("3");
 
-   // Object remove = linkedList.remove(2);
-    //boolean remove = linkedList.remove("23");
-   // System.out.println("移除是否:" + remove);
-    Object set = linkedList.set(2, 45);
-    System.out.println(">>>>>"+set);
+    //Object remove = linkedList.remove(4);
+    //boolean remove = linkedList.remove("3");
+    // System.out.println("移除:" + remove);
+    Object set = linkedList.set(4, 45);
+     System.out.println(">>>>>"+set);
     linkedList.print();
 
   }
