@@ -30,12 +30,10 @@ public class Student implements Cloneable {
   public String getName() {
     return name;
   }
-
   public void setName(String name) {
     this.name = name;
   }
-
-  @Override
+  @ Override
   public String toString() {
     return "Student{" +
         "name='" + name + '\'' +
