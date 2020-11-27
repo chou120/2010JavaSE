@@ -1,4 +1,4 @@
-package club.view;
+package club.service.view;
 
 import java.awt.Color;
 import java.awt.Dimension;

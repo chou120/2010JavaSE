@@ -39,5 +39,8 @@ public class StringDemo {
     String str9="张三丰张三丰耍太极耍太极";
     System.out.println(str9.hashCode()+"::::"+(str5+str5+str6+str6).hashCode());
 
+
+
+
   }
 }
