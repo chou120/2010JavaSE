@@ -22,8 +22,7 @@ import javax.swing.JTextField;
 public class Login extends JFrame {
 
   static int s = 0;
-  private UserDao userDao = new UserDaoImpl();
-
+  private  UserDao  userDao=new UserDaoImpl();
   @Override
   public Graphics getGraphics() {
     return super.getGraphics();
@@ -83,13 +82,14 @@ public class Login extends JFrame {
       @Override
       public void actionPerformed(ActionEvent arg0) {
 
-        String username = c.getText().trim();
-        String password = d.getText();
-        boolean flag = userDao.login(username, password);
+         String username = c.getText();
+         String password = d.getText();
+
+        System.out.println("前端传递过来的内容为:"+username+",pwd:"+password);
+
+        boolean flag=userDao.login(username,password);
 
         s = vcode.getCode().equals(k.getText()) ? 1 : 0;
-
-        System.out.println("------------->>>>>>>>"+s);
 
         if (flag && s == 1) {//equals函数进行用户名和密码的匹配
           JOptionPane.showMessageDialog(null, "登录成功");

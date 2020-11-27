@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -75,8 +76,13 @@ public class Register  extends JFrame {
       @SuppressWarnings("deprecation")
       @Override
       public void actionPerformed(ActionEvent arg0) {
-        setVisible(false);//隐藏之前打开的页面
-        new Login();
+
+        //TODO  
+
+
+        JOptionPane.showMessageDialog(null, "用户信息为空成功");
+        setVisible(false);//隐藏之前打开的隐藏
+        new Login();  //注册成功之后 打开登录窗体
       }
     });
 

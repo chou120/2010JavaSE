@@ -49,6 +49,5 @@ public class IntegerDemo {
 
     final Boolean asdas =  Boolean.valueOf("true");
     System.out.println(asdas);
-
   }
 }

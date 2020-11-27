@@ -12,8 +12,10 @@ public class DataSource {
 
   public static final ArrayList PRODUCT_ARRAY_LIST = new ArrayList();
   public static final ArrayList USER_ARRAY_LIST = new ArrayList();
+
   private static String[] proNames = {"元宵", "T恤", "孕妇装", "型男装", "内衣"};
   private static String[] proAddress = {"苏州", "南京", "泰州", "昆山", "上海"};
+
 
   static {
     for (int i = 0; i < 5; i++) {

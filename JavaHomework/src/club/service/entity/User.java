@@ -7,6 +7,7 @@ package club.service.entity;
  */
 public class User {
 
+  private static String userId="0";
   private String name;
   private String password;
   private String phone;
@@ -15,6 +16,10 @@ public class User {
   }
 
   public User(String name, String password, String phone) {
+     int i = Integer.parseInt(userId);
+     i++;
+    userId=""+i;
+
     this.name = name;
     this.password = password;
     this.phone = phone;

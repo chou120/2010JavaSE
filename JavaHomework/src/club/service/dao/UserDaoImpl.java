@@ -12,12 +12,17 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public boolean login(String username, String password) {
-    for (int i = 0; i < DataSource.USER_ARRAY_LIST.size(); i++) {
-      User user=(User)DataSource.USER_ARRAY_LIST.get(i);
-        if(user.getName().equals(username) && user.getPassword().equals(password) ){
-              return  true;
+    for (int i = 0; i <DataSource.USER_ARRAY_LIST.size(); i++) {
+       User o = (User)DataSource.USER_ARRAY_LIST.get(i);  //User
+      if(o.getName().equals(username) && o.getPassword().equals(password) ){
+            return  true;
         }
     }
     return false;
+  }
+
+  @Override
+  public void register(User user) {
+
   }
 }
