@@ -1,5 +1,6 @@
 package club.service.dao;
 
+import club.service.entity.Product;
 import club.service.util.ArrayList;
 
 /**
@@ -10,5 +11,34 @@ import club.service.util.ArrayList;
 public interface ProductDao {
 
   ArrayList showAllProduct();
+
+  /**
+   * 添加功能
+   * @param product
+   */
+  void   add(Product product);
+
+  /**
+   * 查询功能
+   * @param proId
+   * @return
+   */
+  Product getById(String proId);
+
+  /**
+   * 更新功能
+   * @param product
+   */
+  void  updateProduct(Product product);
+
+
+  /**
+   * 删除功能
+   * @param proId
+   * @return
+   */
+  boolean  deleteById(String  proId);
+
+
 
 }

@@ -1,5 +1,6 @@
 package club.service.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -9,21 +10,24 @@ import java.util.Date;
  */
 public class Product {
 
-  private  String productName;//产品名称
-  private  String number; //产品编号
-  private Date date; //生产时间
-  private String  address;//生产地
-  private static int proId=1;
+  private String productName;//产品名称
+  private String number; //产品编号
+  private String date; //生产时间
+  private String address;//生产地
+  private static int proId = 1;
+
+  private SimpleDateFormat simpleDateFormat;
 
   public Product() {
-    number=proId++ + "";
-    date=new Date();
+    number = proId++ + "";
+    simpleDateFormat= new SimpleDateFormat("yyyy年MM月dd日");
+    date = simpleDateFormat.format(new Date());
+
   }
 
   public Product(String productName, String number, Date date, String address) {
     this.productName = productName;
     this.number = number;
-    this.date = date;
     this.address = address;
   }
 
@@ -43,11 +47,11 @@ public class Product {
     this.number = number;
   }
 
-  public Date getDate() {
+  public String getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(String date) {
     this.date = date;
   }
 
@@ -58,6 +62,7 @@ public class Product {
   public void setAddress(String address) {
     this.address = address;
   }
+
   @Override
   public String toString() {
     return "Product{" +
