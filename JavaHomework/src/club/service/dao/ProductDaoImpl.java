@@ -18,12 +18,19 @@ public class ProductDaoImpl implements  ProductDao {
 
   @Override
   public void add(Product product) {
-    //TODO
+      DataSource.PRODUCT_ARRAY_LIST.add(product);
   }
 
   @Override
   public Product getById(String proId) {
     //TODO
+    ArrayList productArrayList = DataSource.PRODUCT_ARRAY_LIST;
+    for (int i = 0; i <productArrayList.size(); i++) {
+      Product  pro=(Product) productArrayList.get(i);
+      if(pro.getNumber().equals(proId)){
+        return    pro;
+      }
+    }
     return null;
   }
 
@@ -35,6 +42,7 @@ public class ProductDaoImpl implements  ProductDao {
   @Override
   public boolean deleteById(String proId) {
     //TODO
-    return false;
+          //传递过去的是一个字符串编号
+    return DataSource.PRODUCT_ARRAY_LIST.remove(proId);
   }
 }

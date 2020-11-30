@@ -1,5 +1,7 @@
 package club.service.view;
 
+import club.service.dao.ProductDao;
+import club.service.dao.ProductDaoImpl;
 import club.service.entity.Product;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
@@ -21,11 +23,14 @@ import javax.swing.JTextField;
 public class UpdateProduct extends JFrame {
 
 
+  private ProductDao  productDao=new ProductDaoImpl();
+
   public Product getByProId(String proId) {
 
     System.out.println("查询信息功能...");
     //TODO
-    return null;
+
+    return productDao.getById(proId);
   }
 
   public UpdateProduct(String prodId) {
@@ -33,13 +38,12 @@ public class UpdateProduct extends JFrame {
     //首先去查询要更新的产品对象
     Product byProId = getByProId(prodId);
 
-
     JLabel a = new JLabel("产品名称"); //实例化JLabel对象
     JLabel b = new JLabel("生产时间");
     JLabel h = new JLabel("产    地");
 
     JTextField c = new JTextField(byProId.getProductName());//产品名称文本框
-    JPasswordField d = new JPasswordField(byProId.getDate());//时间文本框
+    JTextField d = new JTextField(byProId.getDate());//时间文本框
     JTextArea jTextArea = new JTextArea(byProId.getAddress());//产地
 
     JButton e = new JButton("更新");
@@ -80,7 +84,6 @@ public class UpdateProduct extends JFrame {
         Main.start();
 
       }
-
       @Override
       public void mousePressed(MouseEvent e) {
 

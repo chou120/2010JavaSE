@@ -10,6 +10,8 @@ import club.service.entity.User;
  */
 public class DataSource {
 
+  public  static   boolean  flag=true;
+
   public static final ArrayList PRODUCT_ARRAY_LIST = new ArrayList();
   public static final ArrayList USER_ARRAY_LIST = new ArrayList();
 

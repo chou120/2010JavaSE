@@ -1,5 +1,7 @@
 package club.service.entity;
 
+import club.service.util.DataSource;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -52,7 +54,15 @@ public class Product {
   }
 
   public void setDate(String date) {
-    this.date = date;
+    SimpleDateFormat  simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日");
+    Date parse=null;
+    try {
+      parse = simpleDateFormat.parse(date);  //如果解析的格式不对
+      this.date = date;  //如果没有错误就按步骤执行
+    } catch (ParseException e) {
+      e.printStackTrace(); //  出现异常就执行这步
+      DataSource.flag=false;
+    }
   }
 
   public String getAddress() {

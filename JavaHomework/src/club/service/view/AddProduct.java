@@ -1,13 +1,20 @@
 package club.service.view;
 
+import club.service.dao.ProductDao;
+import club.service.dao.ProductDaoImpl;
+import club.service.dao.UserDao;
+import club.service.dao.UserDaoImpl;
+import club.service.entity.Product;
+import club.service.util.DataSource;
 import java.awt.Container;
-import java.awt.Label;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -18,6 +25,8 @@ import javax.swing.JTextField;
  */
 public class AddProduct extends JFrame {
 
+  private ProductDao productDao=new ProductDaoImpl();
+
   public AddProduct(){
 
     JLabel a=new JLabel("产品名称"); //实例化JLabel对象
@@ -25,7 +34,7 @@ public class AddProduct extends JFrame {
     JLabel h=new JLabel("产    地");
 
     JTextField c=new JTextField(15);//产品名称文本框
-    JPasswordField d=new JPasswordField(15);//时间文本框
+    JTextField d=new JTextField(15);//时间文本框
     JTextArea jTextArea=new JTextArea("");//产地
 
     JButton e=new JButton("添加");
@@ -59,15 +68,29 @@ public class AddProduct extends JFrame {
     e.addMouseListener(new MouseListener() {
       @Override
       public void mouseClicked(MouseEvent e) {
-          //TODO  添加功能
+        //TODO  添加功能
         //    添加的时候如果日期输入框中的数据格式不正确,给出提示
         //        JOptionPane.showMessageDialog(null, "请输入正确的日期格式,如:2020年01月01日");
+        String proName = c.getText(); //获取产品名字
+        String proDate = d.getText(); // 获取时间
+        String proAddress = jTextArea.getText(); //获取生产地
 
+        //进行信息判断是否为null 或者是否为""
 
-        //如果添加成功,那么就直接打开详情窗体
-        setVisible(false);
-        Main.start();
-        System.out.println("添加信息确定功能...");
+        Product product = new Product();
+        product.setProductName(proName);
+        product.setAddress(proAddress);
+        product.setDate(proDate);  //得到数据为错误信息
+
+        if (!DataSource.flag) { //
+          JOptionPane.showMessageDialog(null, "请输入正确的日期格式,如:2020年01月01日");
+        } else {
+          //如果添加成功,那么就直接打开详情窗体
+          productDao.add(product);
+          setVisible(false);
+          Main.start();  //添加成功之后重新调用详情面板
+          System.out.println("添加信息确定功能...");
+        }
       }
 
       @Override
@@ -95,6 +118,10 @@ public class AddProduct extends JFrame {
       public void mouseClicked(MouseEvent e) {
         //TODO  重置功能,清空文本框中的内容
         System.out.println("重置信息功能...");
+        c.setText("");
+        d.setText("");
+        jTextArea.setText("");
+
       }
 
       @Override

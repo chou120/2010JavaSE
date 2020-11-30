@@ -1,5 +1,6 @@
 package club.service.util;
 
+import club.service.entity.Product;
 import java.util.Arrays;
 
 /**
@@ -84,13 +85,14 @@ public class ArrayList {
    * @param o 通过目标元素 equals 方法判断是否匹配， 需要判断o是否为null，如果传入null，则用== 进行比较
    * @return
    */
-  public boolean remove(String o) {
+  public boolean remove(String o) {  //传递一个字符串编号
       if(o==null){
         System.out.println("传入的数据不正确");
         return false;
       }
     for (int i = 0; i < str.length; i++) {
-      if(str[i].equals(o)){
+      Product  product=(Product)str[i];
+      if(product.getNumber().equals(o)){
         //又是删除
         Object st= remove(i);
           if(st!=null){

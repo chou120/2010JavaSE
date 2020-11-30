@@ -6,6 +6,8 @@ package club.service.view;
  * @date 2020/11/26 5:32 下午
  */
 
+import club.service.dao.ProductDao;
+import club.service.dao.ProductDaoImpl;
 import club.service.entity.Product;
 import club.service.util.ArrayList;
 import club.service.util.DataSource;
@@ -40,7 +42,7 @@ public class Main extends JFrame {
   private JTable table;
   private Object head[] = null;
   private Object[][] data = null;
-
+  private ProductDao  productDao=new ProductDaoImpl();
 
   public static void start() {
     EventQueue.invokeLater(new Runnable() {
@@ -131,7 +133,6 @@ public class Main extends JFrame {
       @Override
       public void mouseClicked(MouseEvent e) {
           //TODO
-
         System.out.println("添加按钮...");
 
         setVisible(false);//设置之前面板关闭
@@ -166,8 +167,15 @@ public class Main extends JFrame {
         //TODO 做删除的时候首先要获取jTextFieldJButton2文本框里面的内容 根据编号删除
 
         System.out.println("删除按钮...");
-        setVisible(false);//设置之前面板关闭
-        Main.start(); //重新显示详情面板
+        String text = jTextFieldJButton2.getText();//获取要删除的编号
+        boolean   flag=productDao.deleteById(text);
+
+        if(flag){
+          setVisible(false);//设置之前面板关闭
+          Main.start(); //重新显示详情面板
+        }else{
+            //没有删除成功就给一个提示
+        }
 
       }
 
@@ -198,7 +206,7 @@ public class Main extends JFrame {
       public void mouseClicked(MouseEvent e) {
         //TODO 首先要将修改产品信息显示到面板中,然后再进行修改
          String proId = jTextFieldJButton3.getText();
-         new   UpdateProduct(proId);
+         new   UpdateProduct(proId);  //打开一个更新面板
         System.out.println("更新按钮...");
 
       }

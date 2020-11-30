@@ -1,7 +1,6 @@
 package club.banyuan.demo;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.system.SystemUtil;
 
 /**
  * @author sanye
