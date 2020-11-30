@@ -23,7 +23,6 @@ public enum Day {
   public String getName() {
     return name;
   }
-
 }
 class  Test{
   public static void main(String[] args) {
