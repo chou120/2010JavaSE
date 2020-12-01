@@ -20,16 +20,16 @@ public class Driver {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     // 循环直到退出
-    while (true) {
-      // 读下一行输入
-      String input = br.readLine();
-      // 解析，计算并报告结果
-      if (Calculator.parseAndCompute(input)) {
-        // 指定程序退出
-        break;
-      }
-
-    }
+//    while (true) {
+//      // 读下一行输入
+//      String input = br.readLine();
+//      // 解析，计算并报告结果
+//      if (Calculator.parseAndCompute(input)) {
+//        // 指定程序退出
+//        break;
+//      }
+//
+//    }
 
     // 关闭缓冲的读取器
     br.close();
