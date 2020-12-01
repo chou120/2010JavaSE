@@ -78,10 +78,6 @@ public class MyCollection {
       System.out.println(user1);
     }
 
-
-
-
-
   }
 }
 
