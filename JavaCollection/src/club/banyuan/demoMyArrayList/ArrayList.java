@@ -2,13 +2,14 @@ package club.banyuan.demoMyArrayList;
 
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * @author sanye
  * @version 1.0
  * @date 2020/11/24 10:23 上午
  */
-public class ArrayList<T> {
+public class ArrayList<T> implements Iterable<T>{
 
   private int count;
   private  Object [] str;
@@ -131,6 +132,23 @@ public class ArrayList<T> {
 
   }
 
-  //要求使用泛型  异常  改写上面代码
+  @Override
+  public Iterator<T> iterator() {  // iterator    hasNext  next();
+
+    return new MyIterator();
+  }
+
+  private  class MyIterator implements Iterator<T>{
+
+    @Override
+    public boolean hasNext() {
+      return false;
+    }
+
+    @Override
+    public T next() {
+      return null;
+    }
+  }
 
 }

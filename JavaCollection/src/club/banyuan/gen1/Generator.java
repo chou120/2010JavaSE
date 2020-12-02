@@ -10,7 +10,7 @@ import java.util.Objects;
  * @version 1.0
  * @date 2020/12/1 1:35 下午
  */
-public interface Generator<T extends User> {
+public interface Generator<T> {
 
   void insert(T t);
 
@@ -22,7 +22,7 @@ public interface Generator<T extends User> {
 
 }
 
-class GeneratorIml<T extends User> implements Generator<T> {//T  就是类型(class文件)的占位符
+class GeneratorIml<T> implements Generator<T> {//T  就是类型(class文件)的占位符
 
   Collection<T> con = new ArrayList<>();
 
@@ -47,8 +47,8 @@ class GeneratorIml<T extends User> implements Generator<T> {//T  就是类型(cl
   @Override
   public void updateUser(T t) { //User  Product
     // 对传递过来数据里面的满足字符串属性的信息进行修改,在后面拼接一个"banyuan"
-    String banyuan = t.getName() + "banyuan";
-    t.setName(banyuan);
+//    String banyuan = t.getName() + "banyuan";
+//    t.setName(banyuan);
   }
 
   @Override
