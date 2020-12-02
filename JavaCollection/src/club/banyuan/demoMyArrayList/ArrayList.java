@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @version 1.0
  * @date 2020/11/24 10:23 上午
  */
-public class ArrayList {
+public class ArrayList<T> {
 
   private int count;
   private  Object [] str;
@@ -24,12 +24,11 @@ public class ArrayList {
    * @param element 更新后的元素对象
    * @return 被替换掉的旧对象
    */
-  public Object set(int index, Object element) {
+  public T set(int index, Object element) throws MyIndexOutException{
     if(index<0 || index>str.length){
-      System.out.println("输入下标超出了...");
-      return null;
+      throw  new  MyIndexOutException("位置不在范围内");
     }
-    Object st=str[index];
+    T st=(T)str[index];
     str[index]=element;
     return st;
   }
@@ -39,12 +38,11 @@ public class ArrayList {
    * @param index 需要判断index是否合法
    * @return 返回查找到的元素，找不到返回null
    */
-  public Object get(int index) {
+  public T get(int index)throws MyIndexOutException {
     if(index<0 || index>str.length){
-      System.out.println("输入下标超出了...");
-      return null;
+      throw  new  MyIndexOutException("位置不在范围内");
     }
-    return str[index];
+    return (T)str[index];
   }
 
   /**
@@ -61,12 +59,11 @@ public class ArrayList {
    * @param index 元素下标
    * @return 将删除的元素返回，如果下标不合理，返回null
    */
-  public Object remove(int index) {
+  public T remove(int index) throws MyIndexOutException {
     if(index<0 || index>str.length){
-      System.out.println("输入下标超出了...");
-      return null;
+      throw  new  MyIndexOutException("位置不在范围内");
     }
-    Object st=str[index];
+    T st=(T)str[index];
     for (int i = index; i < str.length; i++) {
         if(i==str.length-1){
           str[i]=null;
@@ -85,10 +82,9 @@ public class ArrayList {
    * @param o 通过目标元素 equals 方法判断是否匹配， 需要判断o是否为null，如果传入null，则用== 进行比较
    * @return
    */
-  public boolean remove(String o) {  //传递一个字符串编号
+  public boolean remove(String o)throws MyIllegament {  //传递一个字符串编号
       if(o==null){
-        System.out.println("传入的数据不正确");
-        return false;
+       throw  new  MyIllegament("非法数据...");
       }
     for (int i = 0; i < str.length; i++) {
       if(str[i].equals(o)){
