@@ -91,14 +91,13 @@ public class SetDemo {
     }
 
     final Integer lower = treeSet.lower(20);
-    System.out.println("........"+lower);
+    System.out.println("........" + lower);
 
     final SortedSet<Integer> integers = treeSet.tailSet(23);
 
-    System.out.println("-------"+integers);
+    System.out.println("-------" + integers);
 
-
-    TreeSet<User>  treeSet1=new TreeSet<User>();
+    TreeSet<User> treeSet1 = new TreeSet<User>();
     treeSet1.add(new User("张三", 28));
     treeSet1.add(new User("张三", 27));
     treeSet1.add(new User("李四五", 25));
@@ -108,22 +107,21 @@ public class SetDemo {
 
     System.out.println(treeSet1);
 
-    List<String>  stringList=new ArrayList<>();
+    List<String> stringList = new ArrayList<>();
     stringList.add("沾上干1");
     stringList.add("沾上干2");
     stringList.add("沾上干3");
     stringList.add("沾上干4");
     stringList.add("沾上干5");
 
-
-    List<String>  stringList2=new ArrayList<>();
+    List<String> stringList2 = new ArrayList<>();
     stringList2.add("沾上干1");
     stringList2.add("沾上干7");
     stringList2.add("沾上干6");
     stringList2.add("沾上干4");
     stringList2.add("沾上干5");
 
-    Set<List<String>> set2=new HashSet<>();
+    Set<List<String>> set2 = new HashSet<>();
     set2.add(stringList);
     set2.add(stringList2);
 
@@ -131,12 +129,11 @@ public class SetDemo {
     System.out.println(set2);
 
 
-
-
-
   }
 }
-class User  implements   Comparable<User>{
+
+class User implements Comparable<User> {
+
   private String name;
   private Integer age;
 
@@ -174,9 +171,9 @@ class User  implements   Comparable<User>{
 
   @Override
   public int compareTo(User o) {
-    int  length=this.getName().length()-o.getName().length();
-    int  number=length==0?this.getName().compareTo(o.getName()):length;
-    int  result= number==0? this.getAge()-o.getAge() :number;
+    int length = this.getName().length() - o.getName().length();
+    int number = length == 0 ? this.getName().compareTo(o.getName()) : length;
+    int result = number == 0 ? this.getAge() - o.getAge() : number;
     return result;
   }
 }
