@@ -72,8 +72,5 @@ public class MapDemo {
      *        后者线程不安全,存储效率高
      *
      */
-
-
-
   }
 }
