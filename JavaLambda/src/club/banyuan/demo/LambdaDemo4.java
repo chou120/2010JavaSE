@@ -13,8 +13,8 @@ public class LambdaDemo4 {
 
 @FunctionalInterface
 interface MyFunc {
-
-  int func(int n);
+  //不是供给型接口 所以在使用 MyClass::new 的时候返回的是一个对象  没办法用来接收
+  void func(int n);
 }
 
 class MyClass {
@@ -47,6 +47,7 @@ class ConstructorRefDemo {
     MyClass myClass = supplier.get();
 
     show(myClass::getValue, 323);
+
 
   }
 
