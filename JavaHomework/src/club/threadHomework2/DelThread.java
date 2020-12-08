@@ -28,7 +28,6 @@ public class DelThread implements  Runnable{
               tool.flag=false;
               Tool.countDownLatch.await();
               Tool.countDownLatch = new CountDownLatch(2);
-
             } catch (InterruptedException e) {
               e.printStackTrace();
             }
