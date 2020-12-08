@@ -35,13 +35,15 @@ public class TestFile {
           ls(collect, file);
           break;
         case "cp":
-
+          //TODO
           break;
         case "rm":
-          //TODO
-
+          System.out.println("rm");
+          file=new File(collect.get(1));
+          rm(file);
           break;
         case "cat":
+          //TODO
           break;
         default:
           throw new RuntimeException("命令行参数不合法....");
@@ -49,6 +51,32 @@ public class TestFile {
       }
 
     }
+  }
+
+  /**
+   * 删除 分为两步  1.直接删除文件  2.是文件夹,如果文件夹为空直接删除,如果不为空就删除该文件夹下面的文件在删除文件夹
+   *
+   * @param file
+   */
+  private static void rm(File file) {
+
+      if(file.isDirectory()){
+         File[] files = file.listFiles();
+        for (File file1 : files) {
+          if(file1.isFile()){
+            file1.delete();//删除文件夹
+          }else{
+            rm(file1);
+          }
+        }
+
+        file.delete();//删除父文件夹
+      }else {
+        file.delete();//删除文件
+      }
+
+
+
   }
 
   private static void ls(List<String> collect, File file) {
@@ -99,16 +127,17 @@ public class TestFile {
     }
   }
 
-  //显示所有
+  //显示所有当前目录下面所有文件及文件夹
   private static String showAll(File file) {
 
     return calFile(file);
   }
 
-  //字符串拼接
-
-
-  //如果是文件夹
+  /**
+   * 对指定文件夹进行操作
+   * @param file
+   * @return
+   */
   private static String calFile(File file) {
     System.out.println("--->");
     StringBuilder str = new StringBuilder();
@@ -126,10 +155,20 @@ public class TestFile {
     return str.toString();
   }
 
+  /**
+   * 判断是否是文件
+   * @param file
+   * @return
+   */
   private static StringBuffer isFile(File file) {
     return strContact(file);
   }
 
+  /**
+   * 字符串拼接
+   * @param file
+   * @return
+   */
   private static StringBuffer strContact(File file) {
     StringBuffer str = new StringBuffer();
 
@@ -156,8 +195,8 @@ public class TestFile {
   }
 
 
+  //对时间进行格式转换
   private static String calumniateDate(long time) {
-
     Date date = new Date(time);
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     return simpleDateFormat.format(date);
