@@ -62,11 +62,14 @@ public class XMLDemo2 {
 //      }
       System.out.println();
 
-
+       List student = rootElement.elements("student");
+      for (Object o : student) {
+        Element element=(Element)o;
+         Attribute id = element.attribute("id");
+        System.out.println(id.getName()+"---"+id.getValue());
+      }
     } catch (DocumentException e) {
       e.printStackTrace();
     }
-
-
   }
 }

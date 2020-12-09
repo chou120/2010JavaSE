@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-  <student id="1">
-    <name>张三</name>
-    <age>12</age>
-    <address>栖霞区</address>
-  </student>
+  <student id="1"><name>张三</name><age>12</age><address>栖霞区</address></student>
   <student id="2">
     <name>李四</name>
     <age>13</age>
