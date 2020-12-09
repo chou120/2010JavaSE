@@ -1,1 +1,53 @@
-{"address":"栖霞区","age":23,"name":"张三","flag":true,"price":12.3}
+[
+  {
+    "address": "武当山",
+    "age": 120,
+    "list": [
+      {
+        "color": "红色",
+        "name": "苹果",
+        "price": 12.3,
+        "weight": 2.5
+      },
+      {
+        "color": "黄色",
+        "name": "橘子",
+        "price": 13.4,
+        "weight": 2.6
+      },
+      {
+        "color": "黄色",
+        "name": "芒果",
+        "price": 1.4,
+        "weight": 5.6
+      }
+    ],
+    "name": "张三丰"
+  },
+  {
+    "address": "武当山2",
+    "age": 121,
+    "name": "张三丰2"
+  },
+  {
+    "address": "武当山3",
+    "age": 122,
+    "name": "张三丰3"
+  },
+  {
+    "address": "武当山4",
+    "age": 123,
+    "list": [
+      {
+        "$ref": "$[0].list[0]"
+      },
+      {
+        "$ref": "$[0].list[1]"
+      },
+      {
+        "$ref": "$[0].list[2]"
+      }
+    ],
+    "name": "张三丰4"
+  }
+]
