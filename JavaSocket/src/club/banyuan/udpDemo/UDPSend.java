@@ -17,8 +17,8 @@ public class UDPSend {
 
   public static void main(String[] args) {
 
-    DatagramSocket datagramSocket=null;
-    Scanner  scanner=new Scanner(System.in);
+    DatagramSocket datagramSocket = null;
+    Scanner scanner = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("请输入数据:");
@@ -30,7 +30,7 @@ public class UDPSend {
             InetAddress.getLocalHost(), 9909);
         datagramSocket.send(datagramPacket);
 
-         datagramSocket.close();
+        datagramSocket.close();
 
       } catch (UnknownHostException | SocketException e) {
         e.printStackTrace();

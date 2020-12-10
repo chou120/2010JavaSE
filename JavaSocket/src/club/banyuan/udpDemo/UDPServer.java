@@ -18,16 +18,16 @@ public class UDPServer {
         datagramSocket = new DatagramSocket(9909);
         byte[] bytes = new byte[1024];
         DatagramPacket datagramPacket = new DatagramPacket(bytes, bytes.length);
-        //有没一个方法获取到的发送过来数据的长度
+        //获取到的发送过来数据的长度
         datagramSocket.receive(datagramPacket);
 
         int length = datagramPacket.getLength();  //接受的字符床数据的长度
-
         System.out.println(datagramPacket.getAddress() + "发送的数据为:" + new String(bytes, 0, length));
-        datagramSocket.close();
 
       } catch (IOException e) {
         e.printStackTrace();
+      }finally {
+        datagramSocket.close();
       }
     }
   }

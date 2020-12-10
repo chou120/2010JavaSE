@@ -11,7 +11,7 @@ import java.net.SocketException;
 public class TestChatRecevied {
 
   public static void main(String[] args) throws SocketException {
-    DatagramSocket receSocket=new DatagramSocket(10006);//接收端服务
+    DatagramSocket receSocket=new DatagramSocket(10086);//接收端服务
     new Thread(new Rece(receSocket)).start();//
 
   }
