@@ -2,6 +2,8 @@ package club.banyuan.properties;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -31,6 +33,19 @@ public class FindFilePath {
     properties.load(resourceAsStream);
     System.out.println(properties);
 
+
+
+    ByteArrayOutputStream  byteArrayOutputStream=new ByteArrayOutputStream();
+    byteArrayOutputStream.write("我喜欢,你呀".getBytes());
+    byteArrayOutputStream.close();
+    byteArrayOutputStream.write("我不喜欢你啊".getBytes());
+
+    byte[] bytes = byteArrayOutputStream.toByteArray();
+
+    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+    byte[] bytes1 = byteArrayInputStream.readAllBytes();
+
+    System.out.println(new String(bytes1));
 
 
   }
