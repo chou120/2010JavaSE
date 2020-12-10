@@ -10,11 +10,9 @@ import java.net.SocketException;
  */
 public class TestReceiver {
 
-
   public static void main(String[] args) throws SocketException {
      DatagramSocket datagramSocket = new DatagramSocket(9001);
-     new  Thread(new Recevied(datagramSocket)).start();
+      new  Thread(new Recevied(datagramSocket)).start();
 
   }
-
 }
