@@ -65,8 +65,8 @@ public class TestJson {
 
       //解析的是集合
       List<User> list1 = JSONObject.parseArray(s, User.class);
-
       System.out.println(list1.get(0).toString());
+
 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
