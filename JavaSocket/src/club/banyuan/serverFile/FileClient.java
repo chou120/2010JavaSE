@@ -48,14 +48,18 @@ public class FileClient {
         InputStream inputStream = socket.getInputStream();
         BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
 
-        int available = bufferedInputStream.available(); //获取数据流的字节长度
-        byte[] bytes = new byte[1024000]; //动态获取长度
+         byte[] bytes = bufferedInputStream.readAllBytes();  //一次性读取所有字节
 
-        int read = bufferedInputStream.read();
-        int key = 0;
-        while (read != -1) {
-          bytes[key++] = (byte) read;
-          read = bufferedInputStream.read();
+//        byte[] bytes = new byte[1024000]; //动态获取长度
+//        int read = bufferedInputStream.read();
+//        int key = 0;
+//        while (read != -1) {
+//          bytes[key++] = (byte) read;
+//          read = bufferedInputStream.read();
+//        }
+        Thread.sleep(1000);
+        if(bytes!=null){
+          System.out.println("下载成功...");
         }
 
         File file = new File("/Users/sanye/" + fileName);
@@ -69,7 +73,7 @@ public class FileClient {
         inputStream.close();
         socket.close();
       }
-    } catch (IOException e) {
+    } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
 
