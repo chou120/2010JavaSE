@@ -63,16 +63,12 @@ public class FileServer {
           bufferedWriter.flush();
         }
         outputStream.close();
-
         //accept.close();
-
       } catch (IOException e) {
         e.printStackTrace();
       }
     }
   }
-
-
 
 
 

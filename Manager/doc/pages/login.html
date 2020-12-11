@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>系统登录 - 超市账单管理系统</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/ico;base64,aWNv">
+</head>
+<body class="blue-style">
+<div id="login">
+  <div class="icon"></div>
+  <div class="login-box">
+    <form id="login-form" method="post">
+      <dl>
+        <dt>用户名：</dt>
+        <dd><label>
+          <input type="text" name="name" class="input-text"/>
+        </label></dd>
+        <dt>密　码：</dt>
+        <dd><label>
+          <input type="password" name="pwd" class="input-text"/>
+        </label></dd>
+      </dl>
+      <div class="buttons">
+        <input type="submit" id="login-btn" value="登录系统" class="input-button"/>
+        <input type="reset" value="重　　填" class="input-button"/>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+  $(function () {
+    $("#login-btn").click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "server/user/login",
+        type: "post",
+        data: form2JsonString("login-form"),
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+          window.location.href = "user.html";
+        }
+      });
+    });
+  });
+
+</script>
+</body>
+</html>
