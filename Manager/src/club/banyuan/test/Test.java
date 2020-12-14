@@ -30,8 +30,13 @@ public class Test {
         String line = bufferedReader.readLine();
         String url = line.split(" ")[1];
         System.out.println("路径" + url);
+        while(line!=null){
+          System.out.println(line);
+          line = bufferedReader.readLine();
+        }
 
         File file = new File("/Users/sanye/2010/2010JavaSE/Manager/doc/pages" + url);
+
         FileInputStream fileInputStream = new FileInputStream(file);
         OutputStream outputStream = socket1.getOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
@@ -56,6 +61,8 @@ public class Test {
         dataOutputStream.write(fileInputStream.readAllBytes());
         dataOutputStream.flush();
         socket1.shutdownOutput();  //关闭写入流
+
+
       }
 
     } catch (IOException e) {
