@@ -29,7 +29,7 @@ public class UserService {
     return null;
   }
 
-  private List<User> load() throws IOException {
+  public List<User> load() throws IOException {
 
     String prop = PropUtil.getProp("page.data");
     File file = new File(prop);

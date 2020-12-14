@@ -16,6 +16,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author sanye
@@ -84,7 +86,6 @@ public class HttpServer{
 
         }else { //否则登录失败
           DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-
           dataOutputStream.writeBytes("HTTP/1.1 400 bad_request\n");
           Map<String, Object> map = new HashMap<>();
           map.put("data", "用户名或密码错误");
@@ -100,6 +101,45 @@ public class HttpServer{
           dataOutputStream.flush();
         }
         break;
+
+      case "/server/user/list":
+
+        DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+        dataOutputStream.writeBytes("HTTP/1.1 200 ok\n");
+        List<User> userList = userService.load();
+        //获取到前端传递过来的数据
+        String data1 = request.getData();
+
+        User user1 = JSONObject.parseObject(data1, User.class);  // a  传递过来的name
+        List<User> newUserList=null;
+        if(user1.getName()!="" && user1.getName()!=null){
+          //前端有数据传递过来的情况下
+          //根据条件进行过滤
+          newUserList = userList.stream().filter((users) -> {
+            if (users.getName().contains(user1.getName())) {
+              return true;
+            }
+            return false;
+          }).collect(Collectors.toList());
+
+        }else {
+          //也就是说前端没有任何数据传递过来的情况下
+          newUserList=userList;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", newUserList);
+        String jsonString = JSONObject.toJSONString(map);
+        //告诉前端页面 后端响应的数据是以json格式返回的
+        dataOutputStream.writeBytes("Content-Type: application/json; charset=utf-8\n");
+        //返回的数据的长度
+        dataOutputStream.writeBytes("Content-Length: " + jsonString.getBytes().length + "\n");
+
+        dataOutputStream.writeBytes("\n");
+        dataOutputStream.write(jsonString.getBytes()); //给出一个响应数据 k-v json
+        dataOutputStream.flush();
+
+        break;
+
       default:
         // TODO 异常
         break;
