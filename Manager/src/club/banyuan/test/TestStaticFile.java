@@ -34,6 +34,12 @@ public class TestStaticFile {
           System.out.println("欢迎进入前端请求数据操操作...");  // 前端传递过来的数据拿到然后跟后端进行对比
           System.out.println("前端传递过来的数据为:"+request.getData());  //
 
+          DataOutputStream  dataOutputStream=new DataOutputStream(outputStream);
+
+          dataOutputStream.writeBytes("HTTP/1.1 200 OK\n");
+          dataOutputStream.writeBytes("\n");
+          dataOutputStream.flush();
+
         }else{
            //如果不是以/server开头 那么就是应该加载静态文件
           DataOutputStream dataOutputStream = new DataOutputStream(outputStream);

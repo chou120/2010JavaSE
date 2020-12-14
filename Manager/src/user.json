@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "zhangsan",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 1,
+    "userTypeStr": "经理"
+  },
+  {
+    "id": 2,
+    "name": "lisi",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 0,
+    "userTypeStr": "客户"
+  },
+  {
+    "id": 3,
+    "name": "wangwu",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 0,
+    "userTypeStr": "客户"
+  },
+  {
+    "id": 1,
+    "name": "zhangsan",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 1,
+    "userTypeStr": "经理"
+  },
+  {
+    "id": 2,
+    "name": "lisi",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 0,
+    "userTypeStr": "客户"
+  },
+  {
+    "id": 3,
+    "name": "wangwu",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 0,
+    "userTypeStr": "客户"
+  },
+  {
+    "id": 0,
+    "name": "王二包",
+    "pwd": "123456",
+    "pwdConfirm": "123456",
+    "userType": 0
+  }
+]
