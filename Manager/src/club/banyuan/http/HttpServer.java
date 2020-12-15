@@ -10,13 +10,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -27,8 +25,9 @@ import java.util.stream.Collectors;
  * <p>
  * 测试登录使用的Http服务器
  */
-public class HttpServer{
-  private  static UserService  userService=new UserService();
+public class HttpServer {
+
+  private static UserService userService = new UserService();
 
 
   public static void main(String[] args) {
@@ -45,15 +44,15 @@ public class HttpServer{
           if (url.startsWith("/server")) {
             //如果是以server开始的 就需要处理数据
             //处理数据的时候需要分发处理,不仅仅只有一个请求
-            dispatchRequest(request,outputStream);
+            dispatchRequest(request, outputStream);
 
           } else {
             //没有以server 开头，表示请求的是资源，html、css、js、图片等文件，返回文件
             SendStaticFile(outputStream, request);
           }
-        }catch (IOException e){
+        } catch (IOException e) {
           // 服务器在处理请求的时候出现了异常
-            e.printStackTrace();
+          e.printStackTrace();
           //返回服务器的状态码
         }
       }
@@ -64,27 +63,28 @@ public class HttpServer{
 
   /**
    * 根据url不同   数据进行分发处理
+   *
    * @param request
    * @param outputStream
    */
   private static void dispatchRequest(Request request, OutputStream outputStream)
       throws IOException {
-     String url = request.getUrl();
+    String url = request.getUrl();
 
     switch (url) {
       case "/server/user/login":
         String data = request.getData();//前端传递过来的json 数据
         User user = JSONObject.parseObject(data, User.class);
         User login = userService.login(user);
-        if(login!=null){
-            //登录成功
+        if (login != null) {
+          //登录成功
           DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
           dataOutputStream.writeBytes("\n");
           dataOutputStream.writeBytes("HTTP/1.1 200 ok");
 
           dataOutputStream.flush();
 
-        }else { //否则登录失败
+        } else { //否则登录失败
           DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
           dataOutputStream.writeBytes("HTTP/1.1 400 bad_request\n");
           Map<String, Object> map = new HashMap<>();
@@ -111,8 +111,8 @@ public class HttpServer{
         String data1 = request.getData();
 
         User user1 = JSONObject.parseObject(data1, User.class);  // a  传递过来的name
-        List<User> newUserList=null;
-        if(user1.getName()!="" && user1.getName()!=null){
+        List<User> newUserList = null;
+        if (user1.getName() != "" && user1.getName() != null) {
           //前端有数据传递过来的情况下
           //根据条件进行过滤
           newUserList = userList.stream().filter((users) -> {
@@ -122,9 +122,9 @@ public class HttpServer{
             return false;
           }).collect(Collectors.toList());
 
-        }else {
+        } else {
           //也就是说前端没有任何数据传递过来的情况下
-          newUserList=userList;
+          newUserList = userList;
         }
         Map<String, Object> map = new HashMap<>();
         map.put("data", newUserList);
@@ -140,6 +140,27 @@ public class HttpServer{
 
         break;
 
+      case "/server/user/add":
+
+        //确定前端传递过来的json
+        String userData = request.getData();
+        User user2 = JSONObject.parseObject(userData, User.class);
+
+        userService.addUser(user2);
+        //如果添加成功
+        map = new HashMap<>();
+        map.put("data", "添加成功");
+
+        dataOutputStream = new DataOutputStream(outputStream);
+        byte[] bytes = JSONObject.toJSONString(map).getBytes();
+        dataOutputStream.writeBytes("HTTP/1.1 200 OK\n");
+        dataOutputStream.writeBytes("Content-Length: " + bytes.length + "\n");
+        dataOutputStream.writeBytes("Content-Type: application/json; charset=utf-8\n");
+        dataOutputStream.writeBytes("\n");
+        dataOutputStream.write(bytes);
+        dataOutputStream.flush();
+
+        break;
       default:
         // TODO 异常
         break;
@@ -149,8 +170,8 @@ public class HttpServer{
   }
 
   /**
-   *
    * 登录成功
+   *
    * @param outputStream
    * @throws IOException
    */
@@ -165,15 +186,16 @@ public class HttpServer{
 
   /**
    * 发送登录请求失败
+   *
    * @param outputStream
    * @param msg
    * @throws IOException
    */
-  private static void sendFail(OutputStream outputStream,String  msg) throws IOException {
+  private static void sendFail(OutputStream outputStream, String msg) throws IOException {
     DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
     //异常信息是json格式 所以需要创建map对象
-    Map<String,Object> map=new HashMap<>();
+    Map<String, Object> map = new HashMap<>();
     map.put("data", msg);
 
     final byte[] bytes = JSONObject.toJSONString(map).getBytes();
@@ -190,11 +212,13 @@ public class HttpServer{
 
   /**
    * 用来加载静态资源文件
+   *
    * @param outputStream
    * @param request
    * @throws IOException
    */
-  private static void SendStaticFile(OutputStream outputStream, Request request) throws IOException {
+  private static void SendStaticFile(OutputStream outputStream, Request request)
+      throws IOException {
     final String url = request.getUrl();
     File file = new File(PropUtil.getProp("page.root"), url);
 

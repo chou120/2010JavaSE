@@ -8,8 +8,63 @@ import java.util.Objects;
  * @date 2020/12/14 1:41 下午
  */
 public class User {
-private   String  name;
-private  String pwd;
+
+  private int id;
+  private String name;
+  private String pwd;
+  private String pwdConfirm;
+  private int userType;  //  int
+
+
+
+  /**
+   /*
+   前后端的数据不全  UserTypeStr 不是前端传递过来的 序列化的时候找不到该字段 我们需要自己去处理
+   让UserTypeStr是字符串
+
+   JSON序列化只会调用属性的无参get方法
+   反序列化的时候会调用有参的set方法
+
+   此方法只是为了让数据在前端进行显示使用  所以不需要再添加其他属性
+   *
+   * @return
+   */
+
+  public  String  getUserTypeStr(){
+    if(userType==1){
+      return "经理";
+    }else  if(userType==0){
+      return "普通用户";
+    }else{
+      return "Unknown";
+    }
+  }
+
+
+  public int getUserType() {
+    return userType;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getPwdConfirm() {
+    return pwdConfirm;
+  }
+
+  public void setPwdConfirm(String pwdConfirm) {
+    this.pwdConfirm = pwdConfirm;
+  }
+
+
+  public void setUserType(int userType) {
+    this.userType = userType;
+  }
 
   public User() {
   }
