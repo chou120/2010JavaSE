@@ -78,27 +78,12 @@ public class HttpServer {
         User login = userService.login(user);
         if (login != null) {
           //登录成功
-          DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-          dataOutputStream.writeBytes("\n");
-          dataOutputStream.writeBytes("HTTP/1.1 200 ok");
-
-          dataOutputStream.flush();
+          sendSuccess(outputStream);
 
         } else { //否则登录失败
-          DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-          dataOutputStream.writeBytes("HTTP/1.1 400 bad_request\n");
-          Map<String, Object> map = new HashMap<>();
-          map.put("data", "用户名或密码错误");
-          String jsonString = JSONObject.toJSONString(map);
-          //告诉前端页面 后端响应的数据是以json格式返回的
-          dataOutputStream.writeBytes("Content-Type: application/json; charset=utf-8\n");
-          //返回的数据的长度
-          dataOutputStream.writeBytes("Content-Length: " + jsonString.getBytes().length + "\n");
 
-          dataOutputStream.writeBytes("\n");
+          sendFail(outputStream, "账户或者密码错误");
 
-          dataOutputStream.write(jsonString.getBytes()); //给出一个响应数据 k-v json
-          dataOutputStream.flush();
         }
         break;
 
@@ -126,17 +111,7 @@ public class HttpServer {
           //也就是说前端没有任何数据传递过来的情况下
           newUserList = userList;
         }
-        Map<String, Object> map = new HashMap<>();
-        map.put("data", newUserList);
-        String jsonString = JSONObject.toJSONString(map);
-        //告诉前端页面 后端响应的数据是以json格式返回的
-        dataOutputStream.writeBytes("Content-Type: application/json; charset=utf-8\n");
-        //返回的数据的长度
-        dataOutputStream.writeBytes("Content-Length: " + jsonString.getBytes().length + "\n");
-
-        dataOutputStream.writeBytes("\n");
-        dataOutputStream.write(jsonString.getBytes()); //给出一个响应数据 k-v json
-        dataOutputStream.flush();
+        sendSuccess(outputStream,newUserList);
 
         break;
 
@@ -146,19 +121,43 @@ public class HttpServer {
         String userData = request.getData();
         User user2 = JSONObject.parseObject(userData, User.class);
 
-        userService.addUser(user2);
+       String  msg= userService.addUser(user2);
         //如果添加成功
-        map = new HashMap<>();
-        map.put("data", "添加成功");
+        sendSuccess(outputStream,msg);
 
-        dataOutputStream = new DataOutputStream(outputStream);
-        byte[] bytes = JSONObject.toJSONString(map).getBytes();
-        dataOutputStream.writeBytes("HTTP/1.1 200 OK\n");
-        dataOutputStream.writeBytes("Content-Length: " + bytes.length + "\n");
-        dataOutputStream.writeBytes("Content-Type: application/json; charset=utf-8\n");
-        dataOutputStream.writeBytes("\n");
-        dataOutputStream.write(bytes);
-        dataOutputStream.flush();
+
+        break;
+
+      case "/server/user/delete":
+        String data2 = request.getData(); //{"id":4}
+        User user3 = JSONObject.parseObject(data2, User.class);
+
+        boolean flag = userService.deleteUserById(user3);
+        if(flag){
+          sendSuccess(outputStream,"移除成功");
+        }else {
+          sendSuccess(outputStream,"移除失败");
+        }
+
+        break;
+
+      case "/server/user/get":
+
+        String data3 = request.getData(); //{"id":4}
+        User userOne = JSONObject.parseObject(data3, User.class);
+
+        User jsonUser = userService.getById(userOne);
+
+        sendSuccess(outputStream,jsonUser);
+
+        break;
+
+      case "/server/user/update":
+        String updateData = request.getData(); //{"id":4}
+        User updateUser = JSONObject.parseObject(updateData, User.class);
+
+        userService.updateUserById(updateUser);
+        sendSuccess(outputStream,"操作成功");
 
         break;
       default:
@@ -168,6 +167,25 @@ public class HttpServer {
 
 
   }
+
+  private static void sendSuccess(OutputStream outputStream, Object msg) throws IOException {
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("data", msg);
+
+    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+    byte[] bytes = JSONObject.toJSONString(map).getBytes();
+
+    dataOutputStream.writeBytes("HTTP/1.1 200 OK\n");
+    dataOutputStream.writeBytes("Content-Length: " + bytes.length + "\n");
+    dataOutputStream.writeBytes("Content-Type: application/json; charset=utf-8\n");
+    dataOutputStream.writeBytes("\n");
+    dataOutputStream.write(bytes);
+    dataOutputStream.flush();
+
+
+  }
+
 
   /**
    * 登录成功

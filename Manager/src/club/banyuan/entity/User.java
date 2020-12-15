@@ -15,8 +15,6 @@ public class User {
   private String pwdConfirm;
   private int userType;  //  int
 
-
-
   /**
    /*
    前后端的数据不全  UserTypeStr 不是前端传递过来的 序列化的时候找不到该字段 我们需要自己去处理
@@ -28,8 +26,8 @@ public class User {
    此方法只是为了让数据在前端进行显示使用  所以不需要再添加其他属性
    *
    * @return
+   *
    */
-
   public  String  getUserTypeStr(){
     if(userType==1){
       return "经理";
@@ -39,7 +37,6 @@ public class User {
       return "Unknown";
     }
   }
-
 
   public int getUserType() {
     return userType;
