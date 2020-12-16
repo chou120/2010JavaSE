@@ -40,7 +40,6 @@ public class UserService {
     UserService.list = list;
   }
 
-
   public User login(User user) throws IOException {
     //如果传递过来的数据 在数据库(json文件)能找到,意味着能成功登录  否则返回一个空
     //首先要将json数据读取出来
