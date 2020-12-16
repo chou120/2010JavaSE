@@ -3,6 +3,7 @@ package club.banyuan.http;
 import club.banyuan.entity.User;
 import club.banyuan.request.Request;
 import club.banyuan.service.UserService;
+import club.banyuan.sessionDemo.MySession;
 import club.banyuan.util.PropUtil;
 import com.alibaba.fastjson.JSONObject;
 import java.io.DataOutputStream;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,28 +93,30 @@ public class HttpServer {
 
         DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
         dataOutputStream.writeBytes("HTTP/1.1 200 ok\n");
-        List<User> userList = userService.load();
-        //获取到前端传递过来的数据
-        String data1 = request.getData();
 
-        User user1 = JSONObject.parseObject(data1, User.class);  // a  传递过来的name
-        List<User> newUserList = null;
-        if (user1.getName() != "" && user1.getName() != null) {
-          //前端有数据传递过来的情况下
-          //根据条件进行过滤
-          newUserList = userList.stream().filter((users) -> {
-            if (users.getName().contains(user1.getName())) {
-              return true;
-            }
-            return false;
-          }).collect(Collectors.toList());
+        Object user4 = MySession.map.get("user");
+        if (user4 != null) {
+          List<User> userList = userService.load();
+          //获取到前端传递过来的数据
+          String data1 = request.getData();
+          User user1 = JSONObject.parseObject(data1, User.class);  // a  传递过来的name
+          List<User> newUserList = null;
+          if (user1.getName() != "" && user1.getName() != null) {
+            //前端有数据传递过来的情况下
+            //根据条件进行过滤
+            newUserList = userList.stream().filter((users) -> {
+              if (users.getName().contains(user1.getName())) {
+                return true;
+              }
+              return false;
+            }).collect(Collectors.toList());
 
-        } else {
-          //也就是说前端没有任何数据传递过来的情况下
-          newUserList = userList;
+          } else {
+            //也就是说前端没有任何数据传递过来的情况下
+            newUserList = userList;
+          }
+          sendSuccess(outputStream, newUserList);
         }
-        sendSuccess(outputStream,newUserList);
-
         break;
 
       case "/server/user/add":
@@ -121,10 +125,9 @@ public class HttpServer {
         String userData = request.getData();
         User user2 = JSONObject.parseObject(userData, User.class);
 
-       String  msg= userService.addUser(user2);
+        String msg = userService.addUser(user2);
         //如果添加成功
-        sendSuccess(outputStream,msg);
-
+        sendSuccess(outputStream, msg);
 
         break;
 
@@ -133,10 +136,10 @@ public class HttpServer {
         User user3 = JSONObject.parseObject(data2, User.class);
 
         boolean flag = userService.deleteUserById(user3);
-        if(flag){
-          sendSuccess(outputStream,"移除成功");
-        }else {
-          sendSuccess(outputStream,"移除失败");
+        if (flag) {
+          sendSuccess(outputStream, "移除成功");
+        } else {
+          sendSuccess(outputStream, "移除失败");
         }
 
         break;
@@ -145,10 +148,8 @@ public class HttpServer {
 
         String data3 = request.getData(); //{"id":4}
         User userOne = JSONObject.parseObject(data3, User.class);
-
         User jsonUser = userService.getById(userOne);
-
-        sendSuccess(outputStream,jsonUser);
+        sendSuccess(outputStream, jsonUser);
 
         break;
 
@@ -157,8 +158,28 @@ public class HttpServer {
         User updateUser = JSONObject.parseObject(updateData, User.class);
 
         userService.updateUserById(updateUser);
-        sendSuccess(outputStream,"操作成功");
+        sendSuccess(outputStream, "操作成功");
 
+        break;
+
+      //  登录的时候获取登录用户的信息  2
+      case "/server/user/getInfo":
+        try {
+          //获取用户登录的信息
+          User user5 = (User) MySession.map.get("user");
+          //
+          sendSuccess(outputStream, user5.getName());  //NullPointException
+
+        } catch (Exception e) {
+          //如果登录用户为空  就显示空数据
+          sendFail(outputStream, "请先登录");
+          userService.setList(new ArrayList<>());
+        }
+        break;
+
+      case "/server/user/quit":  //退出功能  3
+        MySession.map.remove("user");
+        sendSuccess(outputStream);
         break;
       default:
         // TODO 异常

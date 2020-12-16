@@ -13,7 +13,7 @@ $(function () {
       type: 'POST',
       contentType: "application/json;charset=UTF-8",
       url: "server/user/quit",
-      success: function (msg) {
+      success: function (msg) {  // 后端返回一个200的状态码  告诉前端页面  以及成功退出
         window.location.href = "login.html";
       }
     });

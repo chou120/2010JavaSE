@@ -1,6 +1,7 @@
 package club.banyuan.service;
 
 import club.banyuan.entity.User;
+import club.banyuan.sessionDemo.MySession;
 import club.banyuan.util.PropUtil;
 import com.alibaba.fastjson.JSONObject;
 import java.io.File;
@@ -21,13 +22,24 @@ public class UserService {
   //提前读取json 存放到list集合中
   private static List<User> list = new ArrayList<>();
 
-  static {
+ /*
+ static {  5 注释静态加载
     try {
-      list = load();
+      list=load();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
+  */
+
+  public static List<User> getList() {
+    return list;
+  }
+
+  public static void setList(List<User> list) {
+    UserService.list = list;
+  }
+
 
   public User login(User user) throws IOException {
     //如果传递过来的数据 在数据库(json文件)能找到,意味着能成功登录  否则返回一个空
@@ -35,6 +47,9 @@ public class UserService {
     List<User> load = load();
     for (User user1 : load) {
       if (user.equals(user1)) {
+        //将登录的数据存到session中
+        list=load; //登录的时候才去加载数据   4
+        MySession.map.put("user", user);
         return user1;
       }
     }
@@ -87,8 +102,6 @@ public class UserService {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-
   }
 
 
