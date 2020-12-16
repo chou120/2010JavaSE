@@ -101,10 +101,10 @@ public class HttpServer {
           String data1 = request.getData();
           User user1 = JSONObject.parseObject(data1, User.class);  // a  传递过来的name
           List<User> newUserList = null;
-          if (user1.getName() != "" && user1.getName() != null) {
+          if (!user1.getName().equals("") && user1.getName() != null) {
             //前端有数据传递过来的情况下
             //根据条件进行过滤
-            newUserList = userList.stream().filter((users) -> {
+            newUserList = userList.stream().filter((users) -> { //""
               if (users.getName().contains(user1.getName())) {
                 return true;
               }

@@ -1,5 +1,6 @@
 package club.banyuan.entity;
 
+import club.banyuan.service.TestUserAnnotation;
 import java.util.Objects;
 
 /**
@@ -10,9 +11,13 @@ import java.util.Objects;
 public class User {
 
   private int id;
+  @TestUserAnnotation(reg = "^[a-zA-Z][a-zA-Z0-9_]{4,15}$",msg = "字母开头，允许5-16字节，允许字母数字下划线")
   private String name;
+  @TestUserAnnotation(reg = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$",msg = "必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间")
   private String pwd;
+
   private String pwdConfirm;
+
   private int userType;  //  int
 
   /**
