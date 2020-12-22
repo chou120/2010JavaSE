@@ -1,0 +1,5 @@
+package pkgtwo;
+
+class B {
+
+}

@@ -1,0 +1,11 @@
+POST http://127.0.0.1:5000/form
+Content-Type: application/x-www-form-urlencoded
+
+1234=54345&key=value&test=666
+###
+
+GET http://127.0.0.1:5000/form?1234=54345&key=value&test=666
+Content-Type: application/x-www-form-urlencoded
+
+
+###

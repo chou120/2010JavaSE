@@ -1,0 +1,9 @@
+POST http://localhost:5000/api/item
+Content-Type: application/json
+# 浏览器或http客户端，通过在请求头增加以下数据，向服务器发送Cookie数据
+# 数据格式为 key = value 多组数据用 ; 分割
+#Cookie: key=value; key1=value1;
+
+{}
+
+###
