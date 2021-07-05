@@ -13,8 +13,6 @@ public class Demo2 {
    *    方法(行为)  功能的执行
    */
 
-
-
   public static void main(String[] args) {
 
   }

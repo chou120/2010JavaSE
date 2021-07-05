@@ -23,7 +23,5 @@ public class MyScanner {
      }else {
        System.out.println("秋季");
      }
-
   }
-
 }
